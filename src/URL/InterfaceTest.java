@@ -1,3 +1,5 @@
+package URL;
+
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -21,7 +23,7 @@ public class InterfaceTest {
     // Test of getPath
     /*@Test
     public void t_Path(){
-        Interface object = new Interface("www.testing.at/home/user/file.txt");
+        URL.Interface object = new URL.Interface("www.testing.at/home/user/file.txt");
         String out = object.getPath();
         Assertions.assertEquals("/home/user/file.txt", out);
     }*/
@@ -35,7 +37,7 @@ public class InterfaceTest {
 
     /*@Test
     public void t_Path3(){
-        Interface object = new Interface("");
+        URL.Interface object = new URL.Interface("");
         String out = object.getPath();
         Assertions.assertEquals("", out);
     }*/
@@ -58,7 +60,7 @@ public class InterfaceTest {
 
     /*@Test
     public void t_PCount3(){
-        Interface object = new Interface("");
+        URL.Interface object = new URL.Interface("");
         int out = object.getParameterCount();
         Assertions.assertEquals("", out);
     }*/
@@ -138,7 +140,7 @@ public class InterfaceTest {
     // Test of getSegment
     /*@Test
     public void t_Segment(){
-        Interface object = new Interface("");
+        URL.Interface object = new URL.Interface("");
         String[] out = object.getSegments();
         Assertions.assertEquals("", out);
     }*/

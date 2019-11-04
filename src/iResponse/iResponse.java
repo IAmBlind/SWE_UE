@@ -82,5 +82,5 @@ public interface iResponse {
     /**
      * @param network Sends the response to the network stream.
      */
-    void send(OutputStream network);
+    void send(OutputStream network) throws Exception;
 }

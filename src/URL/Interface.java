@@ -1,17 +1,18 @@
+package URL;
+
 import java.util.Map;
 import java.util.HashMap;
 
 public class Interface implements url {
     // Variable
     private String url;
-
-    public static void main(String[] args) {
-
-    }
-
     // Testing Constructor
     public Interface(String s) {
         this.url = s;
+    }
+
+    public static void main(String[] args) {
+
     }
 
     @Override
@@ -69,9 +70,9 @@ public class Interface implements url {
 
     @Override
     public String[] getSegments() {
-        //String[] part = url.split("/");
-        //String url = part[part.length -1];
-        String[] _segments = url.split("/");                // get segments of url
+        //String[] part = URL.url.split("/");
+        //String URL.url = part[part.length -1];
+        String[] _segments = url.split("/");                // get segments of URL.url
         return _segments;                                          // return the segments
     }
 

@@ -2,11 +2,12 @@ package iRequest;
 
 import java.io.InputStream;
 import java.util.Map;
+import java.net.URL;
 
 public interface iRequest {
     /**
      * @return Returns true if the request is valid. A request is valid, if
-     *         method and url could be parsed. A header is not necessary.
+     *         method and URL.url could be parsed. A header is not necessary.
      */
     boolean isValid();
 
