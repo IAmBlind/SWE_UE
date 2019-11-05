@@ -1,21 +1,30 @@
 package Server;
 
-import iRequest.iRequest;
-import iResponse.iResponse;
-
-import iRequest.*;
-import iResponse.*;
-
+//libraries
 import java.io.*;
 import java.net.*;
 
-
 public class Server {
+
+    //constructor
+    /*Server(Socket accept){
+
+    }*/
+
+    public void runServer(int port) throws IOException{
+        ServerSocket serverSocket = new ServerSocket(port);
+        while(!serverSocket.isClosed()) {
+            RunServer rServer = new RunServer(serverSocket.accept());
+            Thread _thread = new Thread((Runnable) rServer);
+            _thread.start();    // start thread
+        }
+    }
+
     // Variable
     //protected int serverPort = 8080;
-    protected Socket serverSocket = null;
-    protected boolean stopped = false;
-    protected Thread running = null;
+    //protected Socket serverSocket = null;
+    //protected boolean stopped = false;
+    //protected Thread running = null;
 
     /*public static void main(String[] args) {
 
@@ -67,31 +76,4 @@ public class Server {
             throw new RuntimeException("Can't open port 8080", e);
         }
     }*/
-
-    Server(Socket _serverSocket) {
-        this.serverSocket = _serverSocket;
-    }
-
-    public void run(){
-        try{
-            Request _request = new Request(serverSocket.getInputStream());
-            // close server
-            if(!_request.isValid()){
-                serverSocket.close();
-            }
-            Response _response = new Response();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    // start new server
-    public void runServer(int port) throws IOException{
-        ServerSocket serverSocket = new ServerSocket(port);
-        while(!serverSocket.isClosed()) {
-            Server rServer = new Server(serverSocket.accept());
-            Thread _thread = new Thread((Runnable) rServer);
-            _thread.start();    // start thread
-        }
-    }
 }

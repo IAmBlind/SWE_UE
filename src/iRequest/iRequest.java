@@ -2,7 +2,7 @@ package iRequest;
 
 import java.io.InputStream;
 import java.util.Map;
-import java.net.URL;
+import URL.Interface;
 
 public interface iRequest {
     /**
@@ -19,7 +19,7 @@ public interface iRequest {
     /**
      * @return Returns a URL object of the request. Never returns null.
      */
-    //Url getUrl();
+    Interface getUrl();
 
     /**
      * @return Returns the request header. Never returns null. All keys must be

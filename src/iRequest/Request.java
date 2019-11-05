@@ -2,14 +2,11 @@ package iRequest;
 
 // Libraries
 import java.io.*;
-import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.net.*;
 
 // class
 import URL.*;
-import iResponse.*;
 
 
 public class Request implements iRequest{
@@ -61,17 +58,15 @@ public class Request implements iRequest{
     @Override
     public String getMethod() {
         // Variable
-
-        return null;   // return the upperCase
+        //String _instruction = instruction;
+        //return _instruction;   // return the upperCase
+        return instruction;
     }
 
-    /*@Override
-    public URL getUrl(){
-        /*URL _url = new URL("www.test.at");
-
-        return _url;
-        return null;
-    }*/
+    @Override
+    public Interface getUrl() {
+        return this.url;
+    }
 
     @Override
     public Map<String, String> getHeaders() {
@@ -94,7 +89,11 @@ public class Request implements iRequest{
 
     @Override
     public int getContentLength() {
-        return 0;
+        // Variable
+        String length;
+
+        length = this.header.get("Content-Length");
+        return Integer.parseInt(length);
     }
 
     @Override
@@ -125,17 +124,8 @@ public class Request implements iRequest{
     }
 
     @Override
-    public byte[] getContentBytes() {
-        /*HttpResponse response;
-
-        if (response != null) {
-            ByteArrayOutputStream body = new ByteArrayOutputStream();
-            response.getEntity().writeTo(body);
-            byte[] bytes = body.toByteArray();
-            return bytes;
-        }else {
-            return null;        // return null if no content was received
-        }*/
+    public byte[] getContentBytes(){
         return null;
+        //byte[] content.toByteArray();
     }
 }
