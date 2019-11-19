@@ -135,14 +135,16 @@ public class Response implements iResponse{
     }
 
     @Override
-    public void send(OutputStream network) throws Exception {
+    public void send(OutputStream network){
         try {
             StringBuilder response = new StringBuilder();
             response.append("HTTP/1.1 ").append(getStatus()).append("\n");
+            response.append("Content-Length: ").append(getContentLength()).append("\n");
             // create the header
             for(Map.Entry<String, String> entry : header.entrySet()) {
                 response.append(entry.getKey()).append((": ")).append(entry.getValue()).append("\n");
             }
+            response.append("\n");
             // send the header
             network.write(response.toString().getBytes());
             network.write(contentB);

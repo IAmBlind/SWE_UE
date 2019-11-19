@@ -1,5 +1,6 @@
 package iRequest;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import URL.Interface;
@@ -65,5 +66,5 @@ public interface iRequest {
      * @return Returns the request content (body) as byte[] or null if there is
      *         no content.
      */
-    byte[] getContentBytes();
+    byte[] getContentBytes() throws IOException;
 }

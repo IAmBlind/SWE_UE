@@ -3,18 +3,21 @@ package Server;
 //libraries
 import java.io.*;
 import java.net.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 //classes
 import iRequest.Request;
 import iResponse.Response;
-import ReadFile.Read;
 
-public class RunServer {
+public class RunServer implements Runnable{
+    private String fileInput;
     private Socket socket;
 
     //constructor
-    RunServer(Socket _socket){
+    RunServer(Socket _socket, String _fileInput){
         this.socket = _socket;
+        this.fileInput = _fileInput;
     }
 
     public void run(){
@@ -26,11 +29,10 @@ public class RunServer {
             if(!_request.isValid()){
                 socket.close();
             }else{                                  // successful connection
-                _response.setContent("Test");
-                //_response.setContent(Reader());
+                //_response.setContent(Files);
+               // _response.setContent(Files.readAllBytes(Paths.get(fileInput)));
             }
             _response.send(this.socket.getOutputStream());
-            //Response _response = new Response();
         } catch (Exception e) {
             e.printStackTrace();
         }

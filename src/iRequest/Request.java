@@ -4,6 +4,7 @@ package iRequest;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import org.apache.commons.io.IOUtils;
 
 // class
 import URL.*;
@@ -15,7 +16,6 @@ public class Request implements iRequest{
     private Map<String, String> header = new HashMap<>();
     private Interface url = new Interface("/");
     private String instruction;
-
 
     // constructor
     public Request(InputStream inputStream) throws IOException{
@@ -32,13 +32,13 @@ public class Request implements iRequest{
 
         // get the header and place them in an array
         text = reader.readLine();
-        headerParts = text.split("/", 3);
+        headerParts = text.split(" ", 3);
         url = new Interface(headerParts[1]);
         instruction = headerParts[0].toUpperCase();     // save the http instruction for validation
         // get the real header
-        while((_text = reader.readLine()) != null) {
+        while((_text = reader.readLine()) != null && !_text.isEmpty()) {
             String[] _header = _text.split(":",2);
-            header.put(_header[0], _header[1]);
+            this.header.put(_header[0].toLowerCase(), _header[1]);
         }
 
     }
@@ -46,20 +46,25 @@ public class Request implements iRequest{
     @Override
     public boolean isValid() {
        // check if the http instruction is valid
-        if(instruction.length() != 3){
+        if(instruction.length() > 2){
+            for(HTTPMethods m : HTTPMethods.values()){
+                if(m.name().equals(instruction))
+                    return true;
+            }
+        }
+        return false;
+        /*if(instruction.length() != 3){
             return false;
         } else if(instruction.length() > 2){
             return true;
         }else {
             return false;
-        }
+        }*/
     }
 
     @Override
     public String getMethod() {
         // Variable
-        //String _instruction = instruction;
-        //return _instruction;   // return the upperCase
         return instruction;
     }
 
@@ -124,8 +129,7 @@ public class Request implements iRequest{
     }
 
     @Override
-    public byte[] getContentBytes(){
-        return null;
-        //byte[] content.toByteArray();
+    public byte[] getContentBytes() throws IOException{
+        return IOUtils.toByteArray(this.input);
     }
 }
