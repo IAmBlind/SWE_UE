@@ -12,14 +12,16 @@ public class Response implements iResponse{
     // Variables
     private String statusServer;
     private int statusCode;
-    private String _header;
+    private String serverHeader;
+    private String status;
+    //private String contentA;
     private byte[] contentB;
     private int contentLength;
     private Map<String, String> header = new HashMap<>();
 
     // constructor
     public Response(){
-
+        header.put("Server", "Test");
     }
 
     @Override
@@ -57,34 +59,34 @@ public class Response implements iResponse{
         //check for status codes
         switch(status){
             case 200:
-                this.statusServer = "Code 200: OK";
+                this.status = "Code 200: OK";
                 break;
             case 201:
-                this.statusServer = "Code 201: Created";
+                this.status = "Code 201: Created";
                 break;
             case 202:
-                this.statusServer = "Code 202: Accepted";
+                this.status = "Code 202: Accepted";
                 break;
             case 302:
-                this.statusServer = "Code 302: Moved Temporarily";
+                this.status = "Code 302: Moved Temporarily";
                 break;
             case 400:
-                this.statusServer = "Code 308: Permanent Redirect";
+                this.status = "Code 400: Permanent Redirect";
                 break;
             case 401:
-                this.statusServer = "Code 401: Unauthorized";
+                this.status = "Code 401: Unauthorized";
                 break;
             case 403:
-                this.statusServer = "Code 403: Forbidden";
+                this.status = "Code 403: Forbidden";
                 break;
             case 404:
-                this.statusServer = "Code 404: Not Found";
+                this.status = "Code 404: Not Found";
                 break;
             case 500:
-                this.statusServer = "Code 500: Internal Server Error";
+                this.status = "Code 500: Internal Server Error";
                 break;
             case 502:
-                this.statusServer = "Code 502: Bad Gateway";
+                this.status = "Code 502: Bad Gateway";
                 break;
             default:
                 break;
@@ -93,11 +95,12 @@ public class Response implements iResponse{
 
     @Override
     public String getStatus() {
-        if(statusCode != 0){
+        return Integer.toString(statusCode);
+        /*if(statusCode != 0){
             return this.statusServer;
         }else {
             return null;
-        }
+        }*/
     }
 
     @Override
@@ -107,7 +110,7 @@ public class Response implements iResponse{
 
     @Override
     public String getServerHeader() {
-        return this._header;
+        return this.serverHeader;
     }
 
     @Override
@@ -117,18 +120,21 @@ public class Response implements iResponse{
 
     @Override
     public void setContent(String content) {
-        this.contentB = content.getBytes();
+        contentB = content.getBytes();
+        contentLength = contentB.length;
     }
 
     @Override
     public void setContent(byte[] content) {
-        this.contentB = content;
+        contentB = content;
+        contentLength = contentB.length;
     }
 
     @Override
     public void setContent(InputStream stream){
         try {
-            this.contentB = stream.readAllBytes();
+            contentB = stream.readAllBytes();
+            contentLength = contentB.length;
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -136,9 +142,14 @@ public class Response implements iResponse{
 
     @Override
     public void send(OutputStream network){
+        System.out.println(contentB);
         try {
+
+            if(contentB.length == 0 ){
+                throw new IllegalAccessException("No content or status");
+            }
             StringBuilder response = new StringBuilder();
-            response.append("HTTP/1.1 ").append(getStatus()).append("\n");
+            response.append("HTTP/1.1").append(getStatus()).append("\n");
             response.append("Content-Length: ").append(getContentLength()).append("\n");
             // create the header
             for(Map.Entry<String, String> entry : header.entrySet()) {
@@ -148,7 +159,7 @@ public class Response implements iResponse{
             // send the header
             network.write(response.toString().getBytes());
             network.write(contentB);
-        }catch (IOException e) {
+        }catch (IOException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }

@@ -30,7 +30,7 @@ public class RunServer implements Runnable{
                 socket.close();
             }else{                                  // successful connection
                 //_response.setContent(Files);
-               // _response.setContent(Files.readAllBytes(Paths.get(fileInput)));
+                _response.setContent(Files.readAllBytes(Paths.get(fileInput)));
             }
             _response.send(this.socket.getOutputStream());
         } catch (Exception e) {

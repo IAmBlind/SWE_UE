@@ -60,7 +60,7 @@ public interface iRequest {
      * @return Returns the request content (body) as string or null if there is
      *         no content.
      */
-    String getContentString();
+    String getContentString() throws IOException;
 
     /**
      * @return Returns the request content (body) as byte[] or null if there is

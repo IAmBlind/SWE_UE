@@ -64,12 +64,15 @@ public class Request implements iRequest{
 
     @Override
     public String getMethod() {
-        // Variable
-        return instruction;
+        //return instruction;
+        return this.isValid() ? this.instruction : null;
     }
 
     @Override
     public Interface getUrl() {
+        if(this.isValid()){
+            return this.url;
+        }
         return this.url;
     }
 
@@ -89,7 +92,11 @@ public class Request implements iRequest{
 
     @Override
     public String getUserAgent() {
-        return this.header.get("User Agent");
+        //return this.header.get("User Agent");
+        if(this.header.size() > 0){
+            return this.header.getOrDefault("user-agent", null);
+        }
+        return null;
     }
 
     @Override
@@ -103,7 +110,11 @@ public class Request implements iRequest{
 
     @Override
     public String getContentType() {
-        return this.header.get("Content Type");
+        //return this.header.get("Content Type");
+        if(this.header.size() > 0){
+            return this.header.getOrDefault("content-type", "");
+        }
+        return "";
     }
 
     @Override
@@ -116,16 +127,17 @@ public class Request implements iRequest{
     }
 
     @Override
-    public String getContentString() {
+    public String getContentString() throws IOException{
         // Variable
-        String content;
+        /*String content;
 
         if(this.input == null){
             return null;
         } else {
             content = this.input.toString();    // convert the input to a string
             return content;
-        }
+        }*/
+        return this.input != null ? IOUtils.toString(this.input, String.valueOf(StandardCharsets.UTF_8)) : null;
     }
 
     @Override
