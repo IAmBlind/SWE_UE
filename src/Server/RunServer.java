@@ -15,9 +15,9 @@ public class RunServer implements Runnable{
     private Socket socket;
 
     //constructor
-    RunServer(Socket _socket, String _fileInput){
+    RunServer(Socket _socket){//, String _fileInput){
         this.socket = _socket;
-        this.fileInput = _fileInput;
+        //this.fileInput = _fileInput;
     }
 
     public void run(){
@@ -29,8 +29,10 @@ public class RunServer implements Runnable{
             if(!_request.isValid()){
                 socket.close();
             }else{                                  // successful connection
-                //_response.setContent(Files);
-                _response.setContent(Files.readAllBytes(Paths.get(fileInput)));
+                //_response.setContent(Files.readAllBytes(Paths.get(fileInput)));
+                _response.setContent(Files.readAllBytes(Paths.get(System.getProperty("user.dir") +
+                        "/src/DataFiles/" +
+                        _request.getUrl().getFileName())));
             }
             _response.send(this.socket.getOutputStream());
         } catch (Exception e) {

@@ -142,7 +142,7 @@ public class Response implements iResponse{
 
     @Override
     public void send(OutputStream network){
-        System.out.println(contentB);
+        //System.out.println(contentB);     //testing purposes
         try {
 
             if(contentB.length == 0 ){
