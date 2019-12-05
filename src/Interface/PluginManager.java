@@ -1,4 +1,4 @@
-package Plugin;
+package Interface;
 
 public interface PluginManager {
     /**

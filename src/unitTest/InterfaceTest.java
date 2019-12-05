@@ -1,5 +1,6 @@
-package URL;
+package unitTest;
 
+import URL.Interface;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

@@ -1,4 +1,4 @@
-package iResponse;
+package Interface;
 
 import java.io.InputStream;
 import java.io.OutputStream;

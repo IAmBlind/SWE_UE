@@ -1,4 +1,9 @@
-package Plugin;
+package Interface;
+
+import initInterfaces.Request;
+import initInterfaces.Response;
+
+import java.io.IOException;
 
 public interface Plugin {
     /**
@@ -9,7 +14,7 @@ public interface Plugin {
      * @param req
      * @return A score between 0 and 1
      */
-    //float canHandle(Request req);
+    float canHandle(Request req);
 
     /**
      * Called by the server when the plugin should handle the request.
@@ -17,5 +22,5 @@ public interface Plugin {
      * @param req
      * @return A new response object.
      */
-    //Response handle(Request req);
+    Response handle(Request req) throws IOException;
 }

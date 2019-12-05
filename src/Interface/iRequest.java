@@ -1,4 +1,4 @@
-package iRequest;
+package Interface;
 
 import java.io.IOException;
 import java.io.InputStream;

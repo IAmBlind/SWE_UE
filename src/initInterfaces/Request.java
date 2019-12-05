@@ -1,16 +1,18 @@
-package iRequest;
+package initInterfaces;
 
 // Libraries
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+
+import initInterfaces.helpers.HTTPMethods;
 import org.apache.commons.io.IOUtils;
 
 // class
 import URL.*;
+import Interface.iRequest;
 
-
-public class Request implements iRequest{
+public class Request implements iRequest {
     //Variables
     private InputStream input;
     private Map<String, String> header = new HashMap<>();
@@ -53,13 +55,6 @@ public class Request implements iRequest{
             }
         }
         return false;
-        /*if(instruction.length() != 3){
-            return false;
-        } else if(instruction.length() > 2){
-            return true;
-        }else {
-            return false;
-        }*/
     }
 
     @Override

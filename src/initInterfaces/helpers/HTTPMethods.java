@@ -1,4 +1,4 @@
-package iRequest;
+package initInterfaces.helpers;
 
 public enum HTTPMethods {
     GET,

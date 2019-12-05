@@ -1,14 +1,13 @@
-package iResponse;
+package initInterfaces;
 
 //libraries
 import java.io.*;
 import java.util.*;
-import java.net.*;
 
 //classes
-import iRequest.*;
+import Interface.iResponse;
 
-public class Response implements iResponse{
+public class Response implements iResponse {
     // Variables
     private String statusServer;
     private int statusCode;

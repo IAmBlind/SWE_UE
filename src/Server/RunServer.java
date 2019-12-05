@@ -1,14 +1,13 @@
 package Server;
 
 //libraries
-import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 //classes
-import iRequest.Request;
-import iResponse.Response;
+import initInterfaces.Request;
+import initInterfaces.Response;
 
 public class RunServer implements Runnable{
     private String fileInput;
