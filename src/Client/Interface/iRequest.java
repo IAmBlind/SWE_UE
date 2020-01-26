@@ -1,14 +1,14 @@
-package Interface;
+package Client.Interface;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
-import URL.Interface;
+import Client.initInterfaces.Interface;
 
 public interface iRequest {
     /**
      * @return Returns true if the request is valid. A request is valid, if
-     *         method and URL.url could be parsed. A header is not necessary.
+     *         method and Client.Interface.url could be parsed. A header is not necessary.
      */
     boolean isValid();
 

@@ -1,4 +1,4 @@
-package Interface;
+package Client.Interface;
 
 public interface PluginManager {
     /**
@@ -24,8 +24,6 @@ public interface PluginManager {
      * @throws InstantiationException
      */
     void add(String plugin) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
-
-
 
     /**
      * Clears all plugins

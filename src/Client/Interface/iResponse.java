@@ -1,4 +1,4 @@
-package Interface;
+package Client.Interface;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -53,12 +53,12 @@ public interface iResponse {
     void addHeader(String header, String value);
 
     /**
-     * @return Returns the Server response header. Defaults to "BIF-SWE1-Server".
+     * @return Returns the Client.Server response header. Defaults to "BIF-SWE1-Client.Server".
      */
     String getServerHeader();
 
     /**
-     * Sets the Server response header.
+     * Sets the Client.Server response header.
      *
      * @param server
      */

@@ -1,7 +1,7 @@
-package Interface;
+package Client.Interface;
 
-import initInterfaces.Request;
-import initInterfaces.Response;
+import Client.initInterfaces.Request;
+import Client.initInterfaces.Response;
 
 import java.io.IOException;
 
